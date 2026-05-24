@@ -1,0 +1,122 @@
+{
+  "name": "bxengine-vscode-ext",
+  "displayName": "bxengine",
+  "description": "VS Code support for B++ using bxengine-lsp",
+  "version": "0.0.1",
+  "publisher": "infernostars",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infernostars/bxengine-vscode-ext.git"
+  },
+  "homepage": "https://github.com/infernostars/bxengine-vscode-ext#readme",
+  "bugs": {
+    "url": "https://github.com/infernostars/bxengine-vscode-ext/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:bxengine",
+    "onCommand:bxengine.restartLanguageServer"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "bxengine",
+        "aliases": [
+          "B++",
+          "bxengine"
+        ],
+        "extensions": [
+          ".bx",
+          ".bpp",
+          ".b++"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bxengine",
+        "scopeName": "source.bxengine",
+        "path": "./syntaxes/bxengine.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "bxengine.restartLanguageServer",
+        "title": "bxengine: Restart Language Server"
+      }
+    ],
+    "configuration": {
+      "title": "bxengine",
+      "properties": {
+        "bxengine.lsp.command": {
+          "type": "string",
+          "default": "bxengine-lsp",
+          "description": "Command used to start the bxengine language server."
+        },
+        "bxengine.lsp.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Arguments passed to the bxengine language server command."
+        },
+        "bxengine.lsp.env": {
+          "type": "object",
+          "default": {},
+          "description": "Extra environment variables for the language server process."
+        },
+        "bxengine.lsp.fallbackToPyPi": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true and lsp.command is missing, run via uvx from PyPI."
+        },
+        "bxengine.lsp.pypiPackage": {
+          "type": "string",
+          "default": "bxengine@latest",
+          "description": "PyPI package used by uvx fallback (default: bxengine)."
+        },
+        "bxengine.lsp.projectPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the Python bxengine project; used for uv fallback when bxengine-lsp is not on PATH."
+        },
+        "bxengine.lsp.fallbackToUvProject": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, fallback to: uv run --project <bxengine.lsp.projectPath> bxengine-lsp when lsp.command is not found."
+        },
+        "bxengine.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Trace communication between VS Code and bxengine-lsp."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  }
+}
