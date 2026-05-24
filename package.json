@@ -3,7 +3,7 @@
   "displayName": "bxengine",
   "description": "VS Code support for B++ using bxengine-lsp",
   "version": "0.0.1",
-  "publisher": "infernostars",
+  "publisher": "whirlingstars",
   "license": "MIT",
   "repository": {
     "type": "git",
