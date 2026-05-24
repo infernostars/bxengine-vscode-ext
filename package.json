@@ -2,7 +2,7 @@
   "name": "bxengine-vscode-ext",
   "displayName": "bxengine",
   "description": "VS Code support for B++ using bxengine-lsp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "whirlingstars",
   "license": "MIT",
   "repository": {
